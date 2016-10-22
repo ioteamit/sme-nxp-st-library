@@ -9,6 +9,7 @@
 #ifndef _SEN_SHI_H_
 #define _SEN_SHI_H_
 
+#include <Arduino.h>
 
 class SenShi {
     
@@ -31,6 +32,10 @@ public:
     void ledRedLight(uint32_t value);
     void ledGreenLight(uint32_t value);
     void ledYellowLight(uint32_t value);
+    byte isButton1Pressed(void);
+    byte isButton2Pressed(void);
+    byte isButton3Pressed(void);
+
 };
 
 

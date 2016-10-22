@@ -9,16 +9,18 @@ smeBle	     KEYWORD3
 
 #######################################
 # Datatypes (KEYWORD1)
+senShi	            KEYWORD1
 #######################################
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 begin	            KEYWORD2
-read                KEYWORD2
-available           KEYWORD2
-write               KEYWORD2
-writeChar           KEYWORD2
+ledRedLight	      KEYWORD2
+ledGreenLight	    KEYWORD2
+ledYellowLight	   KEYWORD2
+isButton1Pressed	 KEYWORD2
+isButton2Pressed	 KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

@@ -11,7 +11,7 @@
 
 #define TCA6416A_ADDRESS 0x20
 #define CONF_PORT_0     0b00111000
-#define INIT_P0         0b00000111
+#define INIT_P0         0b00000111  // ligth of the 3 leds
 
 #define CONF_PORT_1     0b00110101
 #define INIT_P1         0b11001010
@@ -32,8 +32,8 @@
 #define LED_Y_PIN       0x2
 #define LED_R_PIN       0x4
 #define BUTTON_1_PIN    0x8
-#define BUTTON_1_PIN    0x10
-#define BUTTON_1_PIN    0x20
+#define BUTTON_2_PIN    0x10
+#define BUTTON_3_PIN    0x20
 #define NA_1_PIN        0x40
 #define NA_1_PIN        0x80
 
@@ -85,11 +85,11 @@ SenShi::SenShi(void)
 void SenShi::begin(void) {
     Wire.begin();
     if (writeRegister( TCA6416A_ADDRESS, CONFIG_PORT_0, CONF_PORT_0)!=false) {
-        writeRegister( TCA6416A_ADDRESS, OUTPUT_PORT_0, INIT_P0); // keep the BLE reset High
+        writeRegister( TCA6416A_ADDRESS, OUTPUT_PORT_0, INIT_P0); // 
     }
 
     if (writeRegister( TCA6416A_ADDRESS, CONFIG_PORT_1, CONF_PORT_1)!=false){
-        writeRegister( TCA6416A_ADDRESS, OUTPUT_PORT_1, INIT_P1); // keep the resets High
+        writeRegister( TCA6416A_ADDRESS, OUTPUT_PORT_1, INIT_P1); // 
     }
 }
 
@@ -136,6 +136,30 @@ void SenShi::ledYellowLight(uint32_t value) {
     }   
 }
 
+byte SenShi::isButton1Pressed(void) {
+    uint8_t actualPortValue;
 
+    actualPortValue = readRegister( TCA6416A_ADDRESS, INPUT_PORT_0);
+    
+    return !((actualPortValue & BUTTON_1_PIN) == BUTTON_1_PIN);
+    
+}
 
+byte SenShi::isButton2Pressed(void) {
+    uint8_t actualPortValue;
+
+    actualPortValue = readRegister( TCA6416A_ADDRESS, INPUT_PORT_0);
+    
+    return !((actualPortValue & BUTTON_2_PIN) == BUTTON_2_PIN);
+    
+}
+
+byte SenShi::isButton3Pressed(void) {
+    uint8_t actualPortValue;
+
+    actualPortValue = readRegister( TCA6416A_ADDRESS, INPUT_PORT_0);
+    
+    return !((actualPortValue & BUTTON_3_PIN) == BUTTON_3_PIN);
+    
+}
 SenShi  senShi;
